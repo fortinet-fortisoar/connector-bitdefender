@@ -1,0 +1,1228 @@
+{
+    "name": "bitdefender",
+    "version": "1.0.0",
+    "label": "BitDefender",
+    "description": "AbuseIPDB Connector helps to report and identify IP addresses that have been associated with malicious activity online",
+    "publisher": "Parag Khatavkar",
+    "icon_small_name": "bitdefender.png",
+    "icon_large_name": "bitdefender.png",
+    "id": 107,
+    "configuration": {
+        "fields": [
+            {
+                "title": "Server URL",
+                "type": "text",
+                "name": "server_url",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": "https://cloud.gravityzone.bitdefender.com/api/v1.0/jsonrpc"
+            },
+            {
+                "title": "API Token",
+                "type": "password",
+                "name": "token",
+                "required": true,
+                "visible": true,
+                "editable": true
+            },
+            {
+                "title": "Company ID",
+                "type": "text",
+                "name": "company_id",
+                "required": true,
+                "visible": true,
+                "editable": true,
+                "value": ""
+            },
+            {
+                "title": "Verify SSL",
+                "type": "checkbox",
+                "name": "verify_ssl",
+                "required": false,
+                "visible": true,
+                "editable": true,
+                "value": false
+            }
+        ]
+    },
+    "operations": [
+        {
+            "operation": "get_computers_quarantine_items_list",
+            "title": "Get Computers Quarantine List",
+            "category": "investigation",
+            "annotation": "get_computers_quarantine_items_list",
+            "description": "This method retrieves the list of quarantined items available for a company.",
+            "enabled": true,
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "total": "",
+                    "page": "",
+                    "perPage": "",
+                    "pagesCount": "",
+                    "items": [
+                        {
+                            "id": "",
+                            "quarantinedOn": "",
+                            "actionStatus": "",
+                            "companyId": "",
+                            "endpointId": "",
+                            "endpointName": "",
+                            "endpointIP": "",
+                            "canBeRestored": "",
+                            "canBeRemoved": "",
+                            "threatName": "",
+                            "details": {
+                                "filePath": ""
+                            }
+                        }
+                    ]
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The ID of the computer for which you want to retrieve the quarantined items"
+                },
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": 0,
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The number of items displayed in a page."
+                },
+                {
+                    "title": "Filter",
+                    "type": "json",
+                    "name": "filters",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The filters to be used when querying the quarantine items list."
+                }
+            ],
+            "open": false
+        },
+        {
+            "operation": "get_exchange_quarantine_items_list",
+            "title": "Get Exchange Quarantine List",
+            "category": "investigation",
+            "annotation": "get_exchange_quarantine_items_list",
+            "description": "This method retrieves the list of quarantined items available for a company.",
+            "enabled": true,
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "page": "",
+                    "pagesCount": "",
+                    "perPage": "",
+                    "total": "",
+                    "items": [
+                        {
+                            "id": "",
+                            "quarantinedOn": "",
+                            "actionStatus": "",
+                            "endpointId": "",
+                            "endpointName": "",
+                            "endpointIP": "",
+                            "endpointAvailable": "",
+                            "threatName": "",
+                            "companyId": "",
+                            "details": {
+                                "threatStatus": "",
+                                "itemType": "",
+                                "detectionPoint": "",
+                                "email": {
+                                    "senderIP": "",
+                                    "senderEmail": "",
+                                    "subject": "",
+                                    "recipients": [],
+                                    "realRecipients": []
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The ID of the computer for which you want to retrieve the quarantined items"
+                },
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The number of items displayed in a page."
+                },
+                {
+                    "title": "Filter",
+                    "type": "json",
+                    "name": "filters",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The filters to be used when querying the quarantine items list."
+                }
+            ],
+            "open": false
+        },
+        {
+            "operation": "get_accounts_list",
+            "title": "Get Accounts List",
+            "category": "investigation",
+            "annotation": "get_accounts_list",
+            "description": "You can use this method to display all the user accounts that belong to a company.",
+            "enabled": true,
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "total": "",
+                    "page": "",
+                    "perPage": "",
+                    "pagesCount": "",
+                    "items": [
+                        {
+                            "id": "",
+                            "email": "",
+                            "profile": {
+                                "fullName": "",
+                                "language": "",
+                                "timezone": "",
+                                "landingPage": ""
+                            },
+                            "role": "",
+                            "rights": {
+                                "companyManager": "",
+                                "manageCompanies": "false",
+                                "manageNetworks": "",
+                                "manageInventory ": "",
+                                "managePoliciesRead": "",
+                                "managePoliciesWrite": "",
+                                "manageReports": "",
+                                "manageUsers": "",
+                                "manageRemoteShell": ""
+                            },
+                            "companyName": "",
+                            "companyId": ""
+                        }
+                    ]
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The number of items displayed in a page.\nPossible values: 1 - 100.\nDefault value: 30."
+                }
+            ],
+            "open": false
+        },
+        {
+            "operation": "get_policies_list",
+            "title": "Get Policies List",
+            "category": "investigation",
+            "annotation": "get_policies_list",
+            "description": "This method retrieves the list of available policies.",
+            "enabled": true,
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "total": "",
+                    "page": "",
+                    "perPage": "",
+                    "pagesCount": "",
+                    "items": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "companyId": "",
+                            "companyName": ""
+                        }
+                    ]
+                }
+            },
+            "parameters": [
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "The number of items displayed in a page.\nPossible values: 1 - 100.\nDefault value: 30."
+                }
+            ],
+            "open": true
+        },
+        {
+            "operation": "add_to_blocklist",
+            "title": "Add to Blocklist",
+            "annotation": "add_to_blocklist",
+            "description": "Adds items (hashes, paths, or connection rules) to the Bitdefender blocklist.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "MD5",
+                    "tooltip": "Indicates the type of rules you want to create.",
+                    "options": [
+                        "MD5",
+                        "SHA256"
+                    ]
+                },
+                {
+                    "title": "Hash",
+                    "type": "text",
+                    "name": "hash",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "13f6331c638b68d4e7eab6ea60da5473",
+                    "tooltip": "The hash associated to the file you want to block."
+                },
+                {
+                    "title": "Source Info",
+                    "type": "text",
+                    "name": "sourceinfo",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "tooltip": "Provide a description for this specific set of rules."
+                }
+            ],
+            "output_schema": {
+                "jsonrpc": "",
+                "method": "",
+                "id": "",
+                "params": {
+                    "companyId": "",
+                    "type": "",
+                    "rules": [
+                        {
+                            "note": "",
+                            "details": {
+                                "algorithm": "",
+                                "hash": ""
+                            }
+                        }
+                    ],
+                    "recursive": ""
+                }
+            },
+            "open": false
+        },
+        {
+            "operation": "get_block_list_items",
+            "title": "Get Block List Items",
+            "annotation": "get_block_list_items",
+            "description": "This method lists all the hashes that are present in a blocklist.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": 1,
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "10",
+                    "tooltip": "The number of items displayed in a page."
+                }
+            ],
+            "output_schema": {
+                "params": {
+                    "companyId": "",
+                    "page": "",
+                    "perPage": ""
+                },
+                "jsonrpc": "",
+                "method": "",
+                "id": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "remove_from_blocklist",
+            "title": "Remove from BlockList",
+            "annotation": "remove_from_blocklist",
+            "description": "This method removes an item from the Blocklist, identified by its ID.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Hash Item ID",
+                    "type": "text",
+                    "name": "hashItemId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "['6716475178cfc04f0408409a', '6605882651f1f25d2708d2d8']",
+                    "tooltip": "Indicates the items you want to remove from the blocklist rule."
+                }
+            ],
+            "output_schema": {
+                "params": {
+                    "ids": []
+                },
+                "jsonrpc": "",
+                "method": "",
+                "id": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "create_isolate_endpointtask",
+            "title": "Create Isolate Endpoint Task",
+            "annotation": "create_isolate_endpointtask",
+            "description": "This method creates a task to isolate the specified endpoint.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint to be isolated."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": []
+            },
+            "open": false
+        },
+        {
+            "operation": "createRestoreEndpointFromIsolationTask",
+            "title": "Create Restore Endpoint from Isolation",
+            "annotation": "createRestoreEndpointFromIsolationTask",
+            "description": "This method creates a task to restore the specified endpoint from isolation.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint to be restored."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": []
+            },
+            "open": false
+        },
+        {
+            "operation": "get_custom_rule_list",
+            "title": "Get Custom Rules List",
+            "annotation": "get_custom_rule_list",
+            "description": "This method retrieve the custom rules list for a specific company.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint to be restored."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint to be restored."
+                },
+                {
+                    "title": "Company Id",
+                    "type": "text",
+                    "name": "page",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint to be restored."
+                },
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Detection",
+                    "tooltip": "The ID of the endpoint to be restored.",
+                    "options": [
+                        "Detection",
+                        "Exclusion"
+                    ]
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "total": "",
+                    "page": "",
+                    "perPage": "",
+                    "pagesCount": "",
+                    "items": [
+                        {
+                            "id": "",
+                            "name": "",
+                            "ownerId": "",
+                            "description": "",
+                            "companyId": "",
+                            "status": "",
+                            "tags": [],
+                            "settings": {
+                                "status": "",
+                                "target": "",
+                                "criteriaList": [
+                                    {
+                                        "field": "",
+                                        "relation": "",
+                                        "value": []
+                                    },
+                                    {
+                                        "field": "",
+                                        "relation": "",
+                                        "value": [],
+                                        "operator": ""
+                                    },
+                                    {
+                                        "field": "",
+                                        "relation": "",
+                                        "value": [],
+                                        "operator": ""
+                                    }
+                                ],
+                                "severity": ""
+                            }
+                        }
+                    ]
+                }
+            },
+            "open": false
+        },
+        {
+            "operation": "delete_custom_rule",
+            "title": "Delete Custom Rule",
+            "annotation": "delete_custom_rule",
+            "description": "Method to delete a custom rule.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Rule Id",
+                    "type": "text",
+                    "name": "ruleId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the rule to be deleted."
+                },
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Detection",
+                    "tooltip": "The ID of the endpoint to be restored.",
+                    "options": [
+                        "Detection",
+                        "Exclusion"
+                    ]
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "update_incident_note",
+            "title": "Update Incident Note",
+            "annotation": "update_incident_note",
+            "description": "This method assigns a note to an incident.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Incident Id",
+                    "type": "text",
+                    "name": "incident_id",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the rule to be deleted."
+                },
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Detection",
+                    "tooltip": "The type of the target incident. Possible values: incidents - incidents generated as a result of a new Root Cause Analysis (RCA) being displayed under the Incidents section of GravityZone Control Center. You can find these incidents under the Endpoint Incidents or Detected Threats tabs. extendedIncidents - These incidents can be found in the Incidents page in GravityZone Control Center, under the Extended Incidents tab.",
+                    "options": [
+                        "incidents",
+                        "extendedIncidents"
+                    ]
+                },
+                {
+                    "title": "note",
+                    "type": "text",
+                    "name": "note",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Note to be added. If the incident already has a note assigned to it, it will be overwritten."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "change_incident_status",
+            "title": "Change Incident Status",
+            "annotation": "change_incident_status",
+            "description": "This method changes the status of an incident.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Incident Id",
+                    "type": "text",
+                    "name": "incident_id",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the rule to be deleted."
+                },
+                {
+                    "title": "Type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Detection",
+                    "tooltip": "The type of the target incident. Possible values: incidents - incidents generated as a result of a new Root Cause Analysis (RCA) being displayed under the Incidents section of GravityZone Control Center. You can find these incidents under the Endpoint Incidents or Detected Threats tabs. extendedIncidents - These incidents can be found in the Incidents page in GravityZone Control Center, under the Extended Incidents tab.",
+                    "options": [
+                        "incidents",
+                        "extendedIncidents"
+                    ]
+                },
+                {
+                    "title": "Status",
+                    "type": "select",
+                    "name": "status",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Detection",
+                    "tooltip": "The type of the target incident. Possible values: incidents - incidents generated as a result of a new Root Cause Analysis (RCA) being displayed under the Incidents section of GravityZone Control Center. You can find these incidents under the Endpoint Incidents or Detected Threats tabs. extendedIncidents - These incidents can be found in the Incidents page in GravityZone Control Center, under the Extended Incidents tab.",
+                    "options": [
+                        "Open",
+                        "Investigating",
+                        "Closed",
+                        "False Positive"
+                    ]
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "get_endpoints_list",
+            "title": "Get Endpoints List",
+            "annotation": "get_endpoints_list",
+            "description": "This method returns the list of endpoints.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Is Managed",
+                    "type": "select",
+                    "name": "isManaged",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The flag to list managed or unmanaged endpoints. By default, the parameter is not set and the method returns all the managed and unmanaged endpoints. If set on True, the method returns only managed endpoints.",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "type",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "1",
+                    "tooltip": "The results page number."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "30",
+                    "tooltip": "The type of the target incident. Possible values: incidents - incidents generated as a result of a new Root Cause Analysis (RCA) being displayed under the Incidents section of GravityZone Control Center. You can find these incidents under the Endpoint Incidents or Detected Threats tabs. extendedIncidents - These incidents can be found in the Incidents page in GravityZone Control Center, under the Extended Incidents tab."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "get_managed_endpoints_details",
+            "title": "Get Managed Endpoints Details",
+            "annotation": "get_managed_endpoints_details",
+            "description": "This method returns detailed information, such as: details to identify the endpoint and the security agent, the status of installed protection modules.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint for which the details will be returned."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "id": "",
+                    "name": "",
+                    "companyId": "",
+                    "operatingSystem": "",
+                    "state": "",
+                    "ip": "",
+                    "lastSeen": "",
+                    "machineType": "",
+                    "agent": {
+                        "engineVersion": "7.",
+                        "primaryEngine": "",
+                        "fallbackEngine": "",
+                        "lastUpdate": "",
+                        "licensed": "",
+                        "productOutdated": "",
+                        "productUpdateDisabled": "",
+                        "productVersion": "",
+                        "signatureOutdated": "",
+                        "signatureUpdateDisabled": "",
+                        "type": ""
+                    },
+                    "group": {
+                        "id": "",
+                        "name": ""
+                    },
+                    "malwareStatus": {
+                        "detection": "",
+                        "infected": ""
+                    },
+                    "modules": {
+                        "advancedThreatControl": "",
+                        "antimalware": "",
+                        "contentControl": "",
+                        "deviceControl": "",
+                        "firewall": "",
+                        "powerUser": "",
+                        "networkAttackDefense": "",
+                        "integrityMonitoring": ""
+                    },
+                    "policy": {
+                        "id": "",
+                        "applied": "",
+                        "name": ""
+                    },
+                    "label": "",
+                    "moveState": "",
+                    "riskScore": {
+                        "value": "",
+                        "impact": "",
+                        "misconfigurations": "",
+                        "appVulnerabilities": "",
+                        "humanRisks": ""
+                    },
+                    "lastSuccessfulScan": {
+                        "name": "",
+                        "date": ""
+                    }
+                }
+            },
+            "open": false
+        },
+        {
+            "operation": "move_endpoints",
+            "title": "Move Endpoints",
+            "annotation": "move_endpoints",
+            "description": "This method moves a list of endpoints to a custom group.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint for which the details will be returned."
+                },
+                {
+                    "title": "Group ID",
+                    "type": "text",
+                    "name": "groupId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the destination group."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "set_endpoint_label",
+            "title": "Set Endpoint Label",
+            "annotation": "set_endpoint_label",
+            "description": "This method sets a new label to an endpoint.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointId",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the endpoint."
+                },
+                {
+                    "title": "label",
+                    "type": "text",
+                    "name": "label",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "A string representing the label. The maximum allowed length is 64 characters. Enter an empty string to reset a previously set label."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": ""
+            },
+            "open": false
+        },
+        {
+            "operation": "create_scan_task",
+            "title": "Create Scan Task",
+            "annotation": "create_scan_task",
+            "description": "This method creates a new scan task.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Target IDs",
+                    "type": "text",
+                    "name": "targetIds",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "A list with the IDs of the targets to scan. The target ID can designate an endpoint or a container."
+                },
+                {
+                    "title": "type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The type of scan. Available options are: 1 - quick scan; 2 - full scan; 3 - memory scan; 4 - custom scan",
+                    "options": [
+                        "Quick Scan",
+                        "Full Scan",
+                        "Memory Scan"
+                    ]
+                },
+                {
+                    "title": "Scan Name",
+                    "type": "text",
+                    "name": "name",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The name of the task. If the parameter is not passed, the name will be automatically generated."
+                },
+                {
+                    "title": "Return All TaskIds",
+                    "type": "select",
+                    "name": "returnAllTaskIds",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Indicates if the response will contain the IDs for all the tasks created as a result of the request. Possible values: true - will return an array of strings with the IDs of all the tasks created as a result of the request. false - will not return any task IDs. Default value: false.",
+                    "options": [
+                        "True",
+                        "False"
+                    ]
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": []
+            },
+            "open": false
+        },
+        {
+            "operation": "create_scan_task_by_mac",
+            "title": "Create Scan Task By Mac",
+            "annotation": "create_scan_task_by_mac",
+            "description": "Use this method to generate a scan task for managed endpoints identified by their MAC address.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Mac Addresses",
+                    "type": "text",
+                    "name": "macAddresses",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The list of mac addresses of the endpoints to be scanned. You can specify at most 100 MAC addresses at once."
+                },
+                {
+                    "title": "type",
+                    "type": "select",
+                    "name": "type",
+                    "required": true,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The type of scan. Available options are: 1 - quick scan; 2 - full scan; 3 - memory scan; 4 - custom scan",
+                    "options": [
+                        "Quick Scan",
+                        "Full Scan",
+                        "Memory Scan"
+                    ]
+                },
+                {
+                    "title": "Scan Name",
+                    "type": "text",
+                    "name": "name",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The name of the task. If the parameter is not passed, the name will be automatically generated."
+                },
+                {
+                    "title": "Return All TaskIds",
+                    "type": "select",
+                    "name": "returnAllTaskIds",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "Indicates if the response will contain the IDs for all the tasks created as a result of the request. Possible values: true - will return an array of strings with the IDs of all the tasks created as a result of the request. false - will not return any task IDs. Default value: false.",
+                    "options": [
+                        "True",
+                        "False"
+                    ]
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": []
+            },
+            "open": false
+        },
+        {
+            "operation": "get_scan_tasks_list",
+            "title": "Get Scan Task List",
+            "annotation": "get_scan_tasks_list",
+            "description": "This method returns the list of scan tasks.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "status",
+                    "type": "select",
+                    "name": "status",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "options": [
+                        "Pending",
+                        "In progress",
+                        "Finished"
+                    ],
+                    "tooltip": "The status of the task. Available options are: 1 - Pending; 2 - In progress; 3 - Finished."
+                },
+                {
+                    "title": "Page",
+                    "type": "integer",
+                    "name": "page",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "1",
+                    "tooltip": "The results page. The default value is 1."
+                },
+                {
+                    "title": "Per Page",
+                    "type": "integer",
+                    "name": "perPage",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "5",
+                    "tooltip": "The number of items displayed in a page."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "page": "",
+                    "pagesCount": "",
+                    "perPage": "",
+                    "total": "",
+                    "items": []
+                }
+            }
+        },
+        {
+            "operation": "get_scan_tasks_status",
+            "title": "Get Scan Task Status",
+            "annotation": "get_scan_tasks_status",
+            "description": "This method retrieves information about the status of a given task identified using its ID.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Task ID",
+                    "type": "text",
+                    "name": "taskId",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "The ID of the task you want to retrieve the status of."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": {
+                    "page": "",
+                    "pagesCount": "",
+                    "perPage": "",
+                    "total": "",
+                    "items": []
+                }
+            }
+        },
+        {
+            "operation": "create_add_file_to_quarantine_task",
+            "title": "Create Add File To Quarantine Task",
+            "annotation": "create_add_file_to_quarantine_task",
+            "description": "This method creates a new task to add a file to quarantine.",
+            "category": "Security",
+            "enabled": true,
+            "parameters": [
+                {
+                    "title": "Endpoint ID",
+                    "type": "text",
+                    "name": "endpointIds",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "",
+                    "tooltip": "A list with the IDs of target endpoints. You can specify maximum 100 targets at once. Only endpoints with security agents in Detection and prevention mode and active EDR Sensor module are valid targets."
+                },
+                {
+                    "title": "File Path",
+                    "type": "text",
+                    "name": "filePath",
+                    "required": false,
+                    "visible": true,
+                    "editable": true,
+                    "value": "Z:\\path\\to\\file",
+                    "tooltip": "The absolute file path on disk. This path can be at most 4096 characters in length and should have the format suitable to the target endpoint's operating system."
+                }
+            ],
+            "output_schema": {
+                "id": "",
+                "jsonrpc": "",
+                "result": []
+            }
+        }
+    ],
+    "category": [
+        "information"
+    ],
+    "contributor": null,
+    "active": true,
+    "cs_compatible": true,
+    "system": false,
+    "playbook_collections": [],
+    "icon_small": "",
+    "icon_large": "",
+    "help_online": "",
+    "vendor_version": null
+}
