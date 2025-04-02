@@ -8,8 +8,8 @@
   "cs_approved": false,
   "cs_compatible": true,
   "category": "Endpoint Security",
-  "icon_small_name": "",
-  "icon_large_name": "",
+  "icon_small_name": "small.png",
+  "icon_large_name": "large.png",
   "configuration": {
     "fields": [
       {
