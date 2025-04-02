@@ -1,3 +1,10 @@
+"""
+Copyright start
+MIT License
+Copyright (c) 2025 Fortinet Inc
+Copyright end
+"""
+
 import json
 import base64
 import requests
@@ -174,7 +181,6 @@ def get_block_list_items(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def remove_from_blocklist(config, params):
@@ -191,7 +197,6 @@ def remove_from_blocklist(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -210,7 +215,6 @@ def create_isolate_endpointtask(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def createRestoreEndpointFromIsolationTask(config, params):
@@ -227,7 +231,6 @@ def createRestoreEndpointFromIsolationTask(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -253,7 +256,6 @@ def get_custom_rule_list(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def delete_custom_rule(config, params):
@@ -275,7 +277,6 @@ def delete_custom_rule(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -299,7 +300,6 @@ def update_incident_note(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -333,7 +333,6 @@ def change_incident_status(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def get_endpoints_list(config, params):
@@ -350,7 +349,6 @@ def get_endpoints_list(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -369,7 +367,6 @@ def get_managed_endpoints_details(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -390,7 +387,6 @@ def move_endpoints(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def set_endpoint_label(config, params):
@@ -409,7 +405,6 @@ def set_endpoint_label(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -442,7 +437,6 @@ def create_scan_task(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def create_scan_task_by_mac(config, params):
@@ -473,7 +467,6 @@ def create_scan_task_by_mac(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def get_scan_tasks_list(config, params):
@@ -501,7 +494,6 @@ def get_scan_tasks_list(config, params):
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
 def get_scan_tasks_status(config, params):
@@ -518,7 +510,6 @@ def get_scan_tasks_status(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 
@@ -537,7 +528,6 @@ def create_add_file_to_quarantine_task(config, params):
             return response
     except Exception as err:
         logger.exception(f"Error in get_policies_list: {str(err)}")
-        raise ConnectorError(f"Failed to get policies list: {str(err)}")
         raise ConnectorError(f"Failed to get policies list: {str(err)}")
 
 

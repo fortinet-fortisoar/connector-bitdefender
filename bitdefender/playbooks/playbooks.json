@@ -2,297 +2,1785 @@
   "type": "workflow_collections",
   "data": [
     {
+      "uuid": "512a5c52-8f9d-4e32-bdad-c33c54165700",
       "@type": "WorkflowCollection",
-      "name": "Sample - AbuseIPDB - 2.0.0",
-      "description": "Sample playbooks for \"AbuseIPDB\" connector. If you are planning to use any of the sample playbooks in your environment, ensure that you clone those playbooks and move them to a different collection, since the sample playbook collection gets deleted during connector upgrade and delete.",
+      "name": "Sample - Bitdefender - 1.0.0",
+      "description": "Bitdefender Endpoint Detection and Response (EDR) is a security solution designed to detect, investigate, and respond to advanced cyber threats on endpoints. This connector enables automated operations such as Get Computers Quarantine List, Get Exchange Quarantine List, and others.",
       "visible": true,
-      "image": "",
+      "image": null,
+      "recordTags": [
+        "Bitdefender",
+        "bitdefender"
+      ],
       "workflows": [
         {
           "@type": "Workflow",
+          "uuid": "abe11707-2678-4645-96b3-e367afb456d8",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
           "triggerLimit": null,
-          "name": "Report IP",
-          "aliasName": null,
-          "description": "Report about a IP",
-          "collection": "/api/3/workflow_collections/3c6463e1-e876-4dc6-85cd-c3e527def69a",
-          "tag": "#AbuseIPDB",
+          "description": "This method retrieves the list of quarantined items available for a company.",
+          "name": "Get Computers Quarantine List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/8618e07b-d049-4f36-a69f-cb827c20e211",
+          "triggerStep": "/api/3/workflow_steps/edcbfcf5-78e1-4bb8-8f67-75c51e31a543",
           "steps": [
             {
+              "uuid": "edcbfcf5-78e1-4bb8-8f67-75c51e31a543",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "98cccb47-c369-4b15-976c-ad7eda174b79",
-                "title": "AbuseIPDB: Report IP",
+                "route": "f51b1b07-cca1-43db-9c67-75f2abcb2f76",
+                "title": "Bitdefender: Get Computers Quarantine List",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": false,
-                "singleRecordExecution": false
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "left": "125",
-              "top": "30",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "8618e07b-d049-4f36-a69f-cb827c20e211"
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "644268cf-0d11-41aa-b571-1f39f9489f0b",
               "@type": "WorkflowStep",
-              "name": "Report IP",
+              "name": "Get Computers Quarantine List",
               "description": null,
-              "arguments": {
-                "name": "AbuseIPDB",
-                "config": "",
-                "params": {
-                  "ip": "185.53.178.22",
-                  "comment": "",
-                  "categories": "Web Spam"
-                },
-                "version": "2.0.0",
-                "connector": "abuseipdb",
-                "operation": "report_ip",
-                "operationTitle": "Report IP to AbuseIPB",
-                "step_variables": []
-              },
               "status": null,
-              "left": "125",
-              "top": "165",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "3825cc67-7563-4a39-adec-2106e6020660"
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 10,
+                  "filters": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_computers_quarantine_items_list",
+                "operationTitle": "Get Computers Quarantine List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "3d8d5d43-4adc-46fe-86e9-283b99b44581",
-              "name": "Start -> Report IP",
+              "uuid": "e40d8922-52a5-4360-af15-c12266f6ecd4",
               "label": null,
               "isExecuted": false,
-              "targetStep": "/api/3/workflow_steps/3825cc67-7563-4a39-adec-2106e6020660",
-              "sourceStep": "/api/3/workflow_steps/8618e07b-d049-4f36-a69f-cb827c20e211"
+              "name": "Start-> Get Computers Quarantine List",
+              "sourceStep": "/api/3/workflow_steps/edcbfcf5-78e1-4bb8-8f67-75c51e31a543",
+              "targetStep": "/api/3/workflow_steps/644268cf-0d11-41aa-b571-1f39f9489f0b"
             }
-          ],
-          "versions": null,
-          "lastModifyDate": 1583312140,
-          "uuid": "149300f9-6e97-4844-b627-1323705668b2",
-          "recordTags": [
-            "/api/3/tags/abuseipdb"
-          ],
-          "isPrivate": false,
-          "owners": []
+          ]
         },
         {
           "@type": "Workflow",
+          "uuid": "884b6c48-d005-4e16-ae05-eca79797416f",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
           "triggerLimit": null,
-          "name": "IP Lookup",
-          "aliasName": null,
-          "description": "Get Info about a IP",
-          "collection": "/api/3/workflow_collections/3c6463e1-e876-4dc6-85cd-c3e527def69a",
-          "tag": "#AbuseIPDB",
+          "description": "This method retrieves the exchange quarantined items available for a company.",
+          "name": "Get Exchange Quarantine List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/bdd26168-a263-4815-8d8c-ed74362b5402",
+          "triggerStep": "/api/3/workflow_steps/f544beb3-81cb-4945-913a-f649eb167d28",
           "steps": [
             {
+              "uuid": "f544beb3-81cb-4945-913a-f649eb167d28",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "a1b65a2f-0180-4042-8d82-ee3c9cdd56a3",
-                "title": "AbuseIPDB: Lookup IP",
+                "route": "ef1785a8-94eb-4eae-859f-14724e09cbd7",
+                "title": "Bitdefender: Get Exchange Quarantine List",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": false,
-                "singleRecordExecution": false
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "left": "125",
-              "top": "30",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "bdd26168-a263-4815-8d8c-ed74362b5402"
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "bb05b64d-e8dc-4f7c-ba17-f1b0d299ff1f",
               "@type": "WorkflowStep",
-              "name": "IP Lookup",
+              "name": "Get Exchange Quarantine List",
               "description": null,
-              "arguments": {
-                "name": "AbuseIPDB",
-                "config": "",
-                "params": {
-                  "ip": "183.82.121.81",
-                  "days": 10
-                },
-                "version": "2.0.0",
-                "connector": "abuseipdb",
-                "operation": "ip_lookup",
-                "operationTitle": "IP Lookup",
-                "step_variables": []
-              },
               "status": null,
-              "left": "125",
-              "top": "165",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "e4fdd491-05e0-4cdf-a4aa-56786144b9c7"
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 10,
+                  "filters": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_exchange_quarantine_items_list",
+                "operationTitle": "Get Exchange Quarantine List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "b4d46e75-310a-4c5d-b95a-3b0679cf43e9",
-              "name": "Start -> Lookup IP",
+              "uuid": "731d4785-a813-4ad2-b5c4-c468d1b5f86e",
               "label": null,
               "isExecuted": false,
-              "targetStep": "/api/3/workflow_steps/e4fdd491-05e0-4cdf-a4aa-56786144b9c7",
-              "sourceStep": "/api/3/workflow_steps/bdd26168-a263-4815-8d8c-ed74362b5402"
+              "name": "Start-> Get Exchange Quarantine List",
+              "sourceStep": "/api/3/workflow_steps/f544beb3-81cb-4945-913a-f649eb167d28",
+              "targetStep": "/api/3/workflow_steps/bb05b64d-e8dc-4f7c-ba17-f1b0d299ff1f"
             }
-          ],
-          "versions": null,
-          "lastModifyDate": 1583312057,
-          "uuid": "9fbe251e-7a48-41c3-bf42-9b84afc5bd36",
-          "recordTags": [
-            "/api/3/tags/abuseipdb"
-          ],
-          "isPrivate": false,
-          "owners": []
+          ]
         },
         {
           "@type": "Workflow",
+          "uuid": "5c7942da-1238-43d9-92fd-5872292ec4c5",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
           "triggerLimit": null,
-          "name": "Get IP Backlist",
-          "aliasName": null,
-          "description": "Retrieves list of the reported IP address in AbuseIPDB",
-          "collection": "/api/3/workflow_collections/3c6463e1-e876-4dc6-85cd-c3e527def69a",
-          "tag": "#AbuseIPDB",
+          "description": "Retrieves all the user accounts that belong to a company.",
+          "name": "Get Accounts List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
           "isActive": false,
+          "debug": false,
           "singleRecordExecution": false,
-          "remoteExecutableFlag": false,
           "parameters": [],
           "synchronous": false,
-          "triggerStep": "/api/3/workflow_steps/72e710fa-2b9b-4a17-9169-0605a30e9440",
+          "triggerStep": "/api/3/workflow_steps/80bbf1b1-e5a8-492a-b9cd-b1c9f1ea4113",
           "steps": [
             {
+              "uuid": "80bbf1b1-e5a8-492a-b9cd-b1c9f1ea4113",
               "@type": "WorkflowStep",
               "name": "Start",
               "description": null,
+              "status": null,
               "arguments": {
-                "route": "aa2c43a0-0052-4f71-81d3-85067e6b0ebb",
-                "title": "AbuseIPDB: Get IP Backlist",
+                "route": "c4fc8dd8-b275-4a8c-86ac-c79512c9f1de",
+                "title": "Bitdefender: Get Accounts List",
                 "resources": [
                   "alerts"
                 ],
                 "inputVariables": [],
                 "step_variables": {
                   "input": {
-                    "records": "{{vars.input.records}}"
+                    "records": "{{vars.input.records[0]}}"
                   }
                 },
-                "displayConditions": {
-                  "alerts": {
-                    "sort": [],
-                    "limit": 30,
-                    "logic": "AND",
-                    "filters": []
-                  }
-                },
-                "executeButtonText": "Execute",
-                "noRecordExecution": false,
-                "singleRecordExecution": false
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
               },
-              "status": null,
-              "left": "125",
-              "top": "30",
-              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
-              "uuid": "72e710fa-2b9b-4a17-9169-0605a30e9440"
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
             },
             {
+              "uuid": "4eaeeceb-d0f9-4ed8-9dd4-c1acb06a25b7",
               "@type": "WorkflowStep",
-              "name": "Get IP Blacklist",
+              "name": "Get Accounts List",
               "description": null,
-              "arguments": {
-                "name": "AbuseIPDB",
-                "config": "",
-                "params": {
-                  "confidenceMinimum": ""
-                },
-                "version": "2.0.0",
-                "connector": "abuseipdb",
-                "operation": "get_ip_blacklist",
-                "operationTitle": "Get IP Blacklist",
-                "step_variables": []
-              },
               "status": null,
-              "left": "125",
-              "top": "165",
-              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
-              "uuid": "22795fd4-acee-48c2-a381-48e4423c0c07"
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 30
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_accounts_list",
+                "operationTitle": "Get Accounts List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
           "routes": [
             {
               "@type": "WorkflowRoute",
-              "uuid": "ae177b34-8ddd-43f4-9fad-ac0f57c16150",
-              "name": "Start -> Get IP Blacklist",
+              "uuid": "3681b48d-7771-452b-b430-c4d35e2a2a4f",
               "label": null,
               "isExecuted": false,
-              "targetStep": "/api/3/workflow_steps/22795fd4-acee-48c2-a381-48e4423c0c07",
-              "sourceStep": "/api/3/workflow_steps/72e710fa-2b9b-4a17-9169-0605a30e9440"
+              "name": "Start-> Get Accounts List",
+              "sourceStep": "/api/3/workflow_steps/80bbf1b1-e5a8-492a-b9cd-b1c9f1ea4113",
+              "targetStep": "/api/3/workflow_steps/4eaeeceb-d0f9-4ed8-9dd4-c1acb06a25b7"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e44f6e58-20ce-4077-8322-a8692e0c1c30",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method retrieves the list of available policies.",
+          "name": "Get Policies List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/4050fe4d-02f2-4483-819c-cf4197b0cd6c",
+          "steps": [
+            {
+              "uuid": "4050fe4d-02f2-4483-819c-cf4197b0cd6c",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "1637a067-9a9f-4049-b7b7-d44e5f303f00",
+                "title": "Bitdefender: Get Policies List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "63195495-ef98-4e5d-89a8-410affcf693e",
+              "@type": "WorkflowStep",
+              "name": "Get Policies List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 30
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_policies_list",
+                "operationTitle": "Get Policies List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
             }
           ],
-          "versions": null,
-          "lastModifyDate": 1583312214,
-          "uuid": "f50d4940-508f-4109-9412-402130c41ee8",
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "3ebdc3ce-46b1-4a33-8486-060430a62da3",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Policies List",
+              "sourceStep": "/api/3/workflow_steps/4050fe4d-02f2-4483-819c-cf4197b0cd6c",
+              "targetStep": "/api/3/workflow_steps/63195495-ef98-4e5d-89a8-410affcf693e"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "9a9fa21a-3ae1-4481-96b7-ef9772e28f5f",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "Adds items (hashes, paths, or connection rules) to the Bitdefender blocklist.",
+          "name": "Add to Blocklist",
+          "tag": "#Bitdefender",
           "recordTags": [
-            "/api/3/tags/abuseipdb"
+            "Bitdefender",
+            "bitdefender"
           ],
-          "isPrivate": false,
-          "owners": []
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/f9de76fc-8eea-4faa-b171-46bba8032b62",
+          "steps": [
+            {
+              "uuid": "f9de76fc-8eea-4faa-b171-46bba8032b62",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "025f19f0-6641-4a91-913c-a5883fb7b5a5",
+                "title": "Bitdefender: Add to Blocklist",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "1321ba4a-8d68-4cb1-a430-36c6f6e7c5c0",
+              "@type": "WorkflowStep",
+              "name": "Add to Blocklist",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "type": "MD5",
+                  "hash": "13f6331c638b68d4e7eab6ea60da5473"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "add_to_blocklist",
+                "operationTitle": "Add to Blocklist"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "71093fc7-8e14-4811-a84b-59c923027123",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Add to Blocklist",
+              "sourceStep": "/api/3/workflow_steps/f9de76fc-8eea-4faa-b171-46bba8032b62",
+              "targetStep": "/api/3/workflow_steps/1321ba4a-8d68-4cb1-a430-36c6f6e7c5c0"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2cc124c2-a005-4088-bd1f-2c2b0fc6b816",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method lists all the hashes that are present in a blocklist.",
+          "name": "Get Block List Items",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bfb017f9-32c3-4d78-b419-e7aaf7d12089",
+          "steps": [
+            {
+              "uuid": "bfb017f9-32c3-4d78-b419-e7aaf7d12089",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "28c088b3-d139-4f45-8a1f-c36a87200ed6",
+                "title": "Bitdefender: Get Block List Items",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "fd0e32cc-62ef-4fbc-92c6-d0358f2da8fd",
+              "@type": "WorkflowStep",
+              "name": "Get Block List Items",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 10
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_block_list_items",
+                "operationTitle": "Get Block List Items"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "7d509e71-1f34-4f31-8bab-257412bebd32",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Block List Items",
+              "sourceStep": "/api/3/workflow_steps/bfb017f9-32c3-4d78-b419-e7aaf7d12089",
+              "targetStep": "/api/3/workflow_steps/fd0e32cc-62ef-4fbc-92c6-d0358f2da8fd"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "23d107c4-803e-4f4e-8ee9-f44fc95842f5",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method removes an item from the Blocklist, identified by its ID.",
+          "name": "Remove from BlockList",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/bade65d5-56a0-47f6-948d-055f57acab7e",
+          "steps": [
+            {
+              "uuid": "bade65d5-56a0-47f6-948d-055f57acab7e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "6f6a1615-3de7-4acb-bf10-42a61fb83627",
+                "title": "Bitdefender: Remove from BlockList",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "8727f6ae-357d-4f71-b246-758be61b025c",
+              "@type": "WorkflowStep",
+              "name": "Remove from BlockList",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "hashItemId": "['6716475178cfc04f0408409a', '6605882651f1f25d2708d2d8']"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "remove_from_blocklist",
+                "operationTitle": "Remove from BlockList"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "59dae06d-58d9-4cda-a762-75f6333ff518",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Remove from BlockList",
+              "sourceStep": "/api/3/workflow_steps/bade65d5-56a0-47f6-948d-055f57acab7e",
+              "targetStep": "/api/3/workflow_steps/8727f6ae-357d-4f71-b246-758be61b025c"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b43ad134-4b2b-4d94-83c7-029b63ce0b2b",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method creates a task to isolate the specified endpoint.",
+          "name": "Create Isolate Endpoint Task",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/64ed939c-bae1-42b2-b0aa-257349bbdae1",
+          "steps": [
+            {
+              "uuid": "64ed939c-bae1-42b2-b0aa-257349bbdae1",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "da53a307-eea2-414c-98bd-421861692dbd",
+                "title": "Bitdefender: Create Isolate Endpoint Task",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "33da521c-c459-4925-8d3c-83fcbb0cb1b3",
+              "@type": "WorkflowStep",
+              "name": "Create Isolate Endpoint Task",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointId": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "create_isolate_endpointtask",
+                "operationTitle": "Create Isolate Endpoint Task"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "ac79a616-73f2-4918-8937-1aad093b78b8",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Isolate Endpoint Task",
+              "sourceStep": "/api/3/workflow_steps/64ed939c-bae1-42b2-b0aa-257349bbdae1",
+              "targetStep": "/api/3/workflow_steps/33da521c-c459-4925-8d3c-83fcbb0cb1b3"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2b8e0c6e-a76b-4d9d-8506-6e96b5c6e7b3",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method creates a task to restore the specified endpoint from isolation.",
+          "name": "Create Restore Endpoint from Isolation",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/e4d126c1-1c11-4f95-b7d0-c26023435de3",
+          "steps": [
+            {
+              "uuid": "e4d126c1-1c11-4f95-b7d0-c26023435de3",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "f80b7d1f-9587-4316-a144-91547117e9e7",
+                "title": "Bitdefender: Create Restore Endpoint from Isolation",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "2c0c5818-8a58-4aef-aab2-7d0ef67345d6",
+              "@type": "WorkflowStep",
+              "name": "Create Restore Endpoint from Isolation",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointId": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "createRestoreEndpointFromIsolationTask",
+                "operationTitle": "Create Restore Endpoint from Isolation"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "d3bf541b-5abc-4932-851b-63bcabd644a8",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Restore Endpoint from Isolation",
+              "sourceStep": "/api/3/workflow_steps/e4d126c1-1c11-4f95-b7d0-c26023435de3",
+              "targetStep": "/api/3/workflow_steps/2c0c5818-8a58-4aef-aab2-7d0ef67345d6"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2ceb8c0c-9b4c-4968-8791-2a1ecca9008d",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method retrieves the custom rules list for a specific company.",
+          "name": "Get Custom Rules List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/eee8acd3-c6eb-488a-9f97-fe6324c2c444",
+          "steps": [
+            {
+              "uuid": "eee8acd3-c6eb-488a-9f97-fe6324c2c444",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "f74f1ffd-b1ac-49fb-8692-c8801cb2fc93",
+                "title": "Bitdefender: Get Custom Rules List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "5a717d16-3955-436c-9035-c2575db6d6d4",
+              "@type": "WorkflowStep",
+              "name": "Get Custom Rules List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "page": 1,
+                  "perPage": 10,
+                  "companyId": "",
+                  "type": "Detection"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_custom_rule_list",
+                "operationTitle": "Get Custom Rules List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "b72b3ecc-ee1d-410c-a5ae-4799be9ccf94",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Custom Rules List",
+              "sourceStep": "/api/3/workflow_steps/eee8acd3-c6eb-488a-9f97-fe6324c2c444",
+              "targetStep": "/api/3/workflow_steps/5a717d16-3955-436c-9035-c2575db6d6d4"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "2d94b7e9-a87d-413a-8864-828615c86fbd",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "Deletes a custom rule.",
+          "name": "Delete Custom Rule",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/b18f9384-cda9-4438-8ff4-49aedd3b0575",
+          "steps": [
+            {
+              "uuid": "b18f9384-cda9-4438-8ff4-49aedd3b0575",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "bb4896ec-150c-4bc7-aa0b-b25739aff927",
+                "title": "Bitdefender: Delete Custom Rule",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "350addb6-9037-43c9-8209-c1a8e80dcdde",
+              "@type": "WorkflowStep",
+              "name": "Delete Custom Rule",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "ruleId": "",
+                  "type": "Detection"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "delete_custom_rule",
+                "operationTitle": "Delete Custom Rule"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "c575f4a6-6933-4a4e-ad8a-66127162172a",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Delete Custom Rule",
+              "sourceStep": "/api/3/workflow_steps/b18f9384-cda9-4438-8ff4-49aedd3b0575",
+              "targetStep": "/api/3/workflow_steps/350addb6-9037-43c9-8209-c1a8e80dcdde"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "648974d9-bf3e-4e70-a060-b231e6046ad4",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method assigns a note to an incident.",
+          "name": "Update Incident Note",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/29b79a5d-faf3-45ad-9f1e-e26dbcf0c5c0",
+          "steps": [
+            {
+              "uuid": "29b79a5d-faf3-45ad-9f1e-e26dbcf0c5c0",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "db60ca15-4bca-4988-a0e9-62ef4a86d448",
+                "title": "Bitdefender: Update Incident Note",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "13356204-4dca-4ebb-b435-fe10ead3a23a",
+              "@type": "WorkflowStep",
+              "name": "Update Incident Note",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "incident_id": "",
+                  "type": "Detection",
+                  "note": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "update_incident_note",
+                "operationTitle": "Update Incident Note"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "4d56af8c-9543-4dde-9f71-85d4bfe5c4d4",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Update Incident Note",
+              "sourceStep": "/api/3/workflow_steps/29b79a5d-faf3-45ad-9f1e-e26dbcf0c5c0",
+              "targetStep": "/api/3/workflow_steps/13356204-4dca-4ebb-b435-fe10ead3a23a"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "72ac63ab-64a2-445f-931f-fb060d39b305",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method changes the status of an incident.",
+          "name": "Change Incident Status",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/20fc74d5-0b55-498d-947c-5805e6ff3699",
+          "steps": [
+            {
+              "uuid": "20fc74d5-0b55-498d-947c-5805e6ff3699",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "11ddce98-7d2a-4355-a79b-d8b48fa57661",
+                "title": "Bitdefender: Change Incident Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "dde63f5c-fae6-4d69-914d-66967f9c15ff",
+              "@type": "WorkflowStep",
+              "name": "Change Incident Status",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "incident_id": "",
+                  "type": "Detection",
+                  "status": "Open"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "change_incident_status",
+                "operationTitle": "Change Incident Status"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "14420dc5-64f5-4fd3-badc-fd7e6a0365a1",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Change Incident Status",
+              "sourceStep": "/api/3/workflow_steps/20fc74d5-0b55-498d-947c-5805e6ff3699",
+              "targetStep": "/api/3/workflow_steps/dde63f5c-fae6-4d69-914d-66967f9c15ff"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "7ecd2591-abd9-441b-9d3a-cae1f389df86",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method returns the list of endpoints.",
+          "name": "Get Endpoints List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/55cfde52-85d2-4b33-b32f-2bb27f526751",
+          "steps": [
+            {
+              "uuid": "55cfde52-85d2-4b33-b32f-2bb27f526751",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "1899ebb6-fabf-4321-a8e4-a02b7c798865",
+                "title": "Bitdefender: Get Endpoints List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "fa38ef3a-4340-41dd-994c-76d5cf0185f9",
+              "@type": "WorkflowStep",
+              "name": "Get Endpoints List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "isManaged": "",
+                  "page": 1,
+                  "perPage": 30
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_endpoints_list",
+                "operationTitle": "Get Endpoints List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "586e4b8b-9c18-4cc4-8097-acedd5f14e2f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Endpoints List",
+              "sourceStep": "/api/3/workflow_steps/55cfde52-85d2-4b33-b32f-2bb27f526751",
+              "targetStep": "/api/3/workflow_steps/fa38ef3a-4340-41dd-994c-76d5cf0185f9"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "a2a74205-0dda-435e-b46e-e65f224f3da6",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method returns detailed information about managed endpoints.",
+          "name": "Get Managed Endpoints Details",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/8232bdd8-13b2-4186-bb2c-affee72a3c61",
+          "steps": [
+            {
+              "uuid": "8232bdd8-13b2-4186-bb2c-affee72a3c61",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "5a94b079-fe68-40ba-a19b-565187814a1e",
+                "title": "Bitdefender: Get Managed Endpoints Details",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "ec8aeff4-3b06-4901-a22e-45ccb3c9ffa2",
+              "@type": "WorkflowStep",
+              "name": "Get Managed Endpoints Details",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointId": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_managed_endpoints_details",
+                "operationTitle": "Get Managed Endpoints Details"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "2b38238a-c22e-41d2-b4d4-8d946af5c363",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Managed Endpoints Details",
+              "sourceStep": "/api/3/workflow_steps/8232bdd8-13b2-4186-bb2c-affee72a3c61",
+              "targetStep": "/api/3/workflow_steps/ec8aeff4-3b06-4901-a22e-45ccb3c9ffa2"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "e479c34b-5d7c-4adc-bf40-e7d811558dcc",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method moves a list of endpoints to a custom group.",
+          "name": "Move Endpoints",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/9614b35f-7613-4148-a482-f3a872770961",
+          "steps": [
+            {
+              "uuid": "9614b35f-7613-4148-a482-f3a872770961",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "b707d054-19f9-4ded-93b7-9012fd8333e0",
+                "title": "Bitdefender: Move Endpoints",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "24b67d16-76a5-4656-b600-9cd87e685eef",
+              "@type": "WorkflowStep",
+              "name": "Move Endpoints",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointId": "",
+                  "groupId": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "move_endpoints",
+                "operationTitle": "Move Endpoints"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "9769759e-3890-4baa-b053-2f0319fda827",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Move Endpoints",
+              "sourceStep": "/api/3/workflow_steps/9614b35f-7613-4148-a482-f3a872770961",
+              "targetStep": "/api/3/workflow_steps/24b67d16-76a5-4656-b600-9cd87e685eef"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "69889d3f-6acc-4108-9c6a-9ae5c8d0294c",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method sets a new label to an endpoint.",
+          "name": "Set Endpoint Label",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/46616673-0164-4396-a99e-0efc4007d2aa",
+          "steps": [
+            {
+              "uuid": "46616673-0164-4396-a99e-0efc4007d2aa",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "9c49ff39-979e-4c2a-b27a-d06b4c960606",
+                "title": "Bitdefender: Set Endpoint Label",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "d8f3fe4a-3abc-44e4-a655-f1aa6ebd81b5",
+              "@type": "WorkflowStep",
+              "name": "Set Endpoint Label",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointId": "",
+                  "label": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "set_endpoint_label",
+                "operationTitle": "Set Endpoint Label"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "ba27c87a-a22e-4a92-8def-275cde1aaf0e",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Set Endpoint Label",
+              "sourceStep": "/api/3/workflow_steps/46616673-0164-4396-a99e-0efc4007d2aa",
+              "targetStep": "/api/3/workflow_steps/d8f3fe4a-3abc-44e4-a655-f1aa6ebd81b5"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b5a58507-e5dc-4f19-8e63-f5efe38b784e",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method creates a new scan task.",
+          "name": "Create Scan Task",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/79cd8e67-e35d-475a-872e-0fc650912fc2",
+          "steps": [
+            {
+              "uuid": "79cd8e67-e35d-475a-872e-0fc650912fc2",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "203ba686-7c74-43c2-a310-7c4749aa0399",
+                "title": "Bitdefender: Create Scan Task",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "75e80beb-4229-4940-902d-132f0eb3b56d",
+              "@type": "WorkflowStep",
+              "name": "Create Scan Task",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "targetIds": "",
+                  "type": "",
+                  "name": "",
+                  "returnAllTaskIds": "False"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "create_scan_task",
+                "operationTitle": "Create Scan Task"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "4cf972c1-0701-437e-bf2d-1829e65c36d2",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Scan Task",
+              "sourceStep": "/api/3/workflow_steps/79cd8e67-e35d-475a-872e-0fc650912fc2",
+              "targetStep": "/api/3/workflow_steps/75e80beb-4229-4940-902d-132f0eb3b56d"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "b067c4d8-16cb-464e-ace0-dd24b0a0df23",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "Use this method to generate a scan task for managed endpoints identified by their MAC address.",
+          "name": "Create Scan Task By Mac Address",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/d11ca770-02eb-4a87-8f77-7f16bea8d67e",
+          "steps": [
+            {
+              "uuid": "d11ca770-02eb-4a87-8f77-7f16bea8d67e",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "a0fba841-58fc-43c8-894b-221bbc4d74e0",
+                "title": "Bitdefender: Create Scan Task By Mac Address",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "5d572faf-36c1-4d36-a021-93ee125fa959",
+              "@type": "WorkflowStep",
+              "name": "Create Scan Task By Mac Address",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "macAddresses": "",
+                  "type": "",
+                  "name": "",
+                  "returnAllTaskIds": "False"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "create_scan_task_by_mac",
+                "operationTitle": "Create Scan Task By Mac Address"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "d9d14657-569f-4f5a-87c4-8348c9595e3f",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Scan Task By Mac Address",
+              "sourceStep": "/api/3/workflow_steps/d11ca770-02eb-4a87-8f77-7f16bea8d67e",
+              "targetStep": "/api/3/workflow_steps/5d572faf-36c1-4d36-a021-93ee125fa959"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "5053562b-4d38-4fb2-ab5b-95f75b35b8dd",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method returns the list of scan tasks.",
+          "name": "Get Scan Task List",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/dd4f6039-3ed6-4742-b4ec-840c99c380b8",
+          "steps": [
+            {
+              "uuid": "dd4f6039-3ed6-4742-b4ec-840c99c380b8",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "846ddf86-1c87-4154-b79e-7efd0d1aade1",
+                "title": "Bitdefender: Get Scan Task List",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "476a24a9-2559-4fa2-98f7-f13ec002b3fc",
+              "@type": "WorkflowStep",
+              "name": "Get Scan Task List",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "status": "",
+                  "page": 1,
+                  "perPage": 5
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_scan_tasks_list",
+                "operationTitle": "Get Scan Task List"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "7bc14619-b8e4-43df-9e94-1b7a580dc4bf",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Scan Task List",
+              "sourceStep": "/api/3/workflow_steps/dd4f6039-3ed6-4742-b4ec-840c99c380b8",
+              "targetStep": "/api/3/workflow_steps/476a24a9-2559-4fa2-98f7-f13ec002b3fc"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "39aa6831-d5f9-4c27-ac97-03a03ae051b9",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method retrieves information about the status of a given task identified using its ID.",
+          "name": "Get Scan Task Status",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/5f77e688-50f7-4606-bf5c-4572638633bd",
+          "steps": [
+            {
+              "uuid": "5f77e688-50f7-4606-bf5c-4572638633bd",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "168619bf-4463-42f2-a2e5-2afc2f92137a",
+                "title": "Bitdefender: Get Scan Task Status",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "2902d0fe-a61d-41af-b265-96edd2cd4859",
+              "@type": "WorkflowStep",
+              "name": "Get Scan Task Status",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "taskId": ""
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "get_scan_tasks_status",
+                "operationTitle": "Get Scan Task Status"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "e86826f3-9bae-423f-baed-1ae4aa7af531",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Get Scan Task Status",
+              "sourceStep": "/api/3/workflow_steps/5f77e688-50f7-4606-bf5c-4572638633bd",
+              "targetStep": "/api/3/workflow_steps/2902d0fe-a61d-41af-b265-96edd2cd4859"
+            }
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "uuid": "21fff012-dd64-4cf6-b2bd-bbe0544c1d18",
+          "collection": "/api/3/workflow_collections/512a5c52-8f9d-4e32-bdad-c33c54165700",
+          "triggerLimit": null,
+          "description": "This method creates a new task to add a file to quarantine.",
+          "name": "Create Add File To Quarantine Task",
+          "tag": "#Bitdefender",
+          "recordTags": [
+            "Bitdefender",
+            "bitdefender"
+          ],
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "parameters": [],
+          "synchronous": false,
+          "triggerStep": "/api/3/workflow_steps/a0b10302-e4bd-4134-b98c-ce609f0f107b",
+          "steps": [
+            {
+              "uuid": "a0b10302-e4bd-4134-b98c-ce609f0f107b",
+              "@type": "WorkflowStep",
+              "name": "Start",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "route": "9c6730e7-f81d-47db-8ad6-f0984d792609",
+                "title": "Bitdefender: Create Add File To Quarantine Task",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "singleRecordExecution": false,
+                "noRecordExecution": true,
+                "executeButtonText": "Execute"
+              },
+              "left": "20",
+              "top": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a"
+            },
+            {
+              "uuid": "d1708b15-9c98-4b38-a00c-376733536a4f",
+              "@type": "WorkflowStep",
+              "name": "Create Add File To Quarantine Task",
+              "description": null,
+              "status": null,
+              "arguments": {
+                "name": "Bitdefender",
+                "config": "''",
+                "params": {
+                  "endpointIds": "",
+                  "filePath": "Z:\\path\\to\\file"
+                },
+                "version": "1.0.0",
+                "connector": "bitdefender",
+                "operation": "create_add_file_to_quarantine_task",
+                "operationTitle": "Create Add File To Quarantine Task"
+              },
+              "left": "188",
+              "top": "120",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "uuid": "0a3632e8-0606-4af1-b444-9ff58ef1d8a9",
+              "label": null,
+              "isExecuted": false,
+              "name": "Start-> Create Add File To Quarantine Task",
+              "sourceStep": "/api/3/workflow_steps/a0b10302-e4bd-4134-b98c-ce609f0f107b",
+              "targetStep": "/api/3/workflow_steps/d1708b15-9c98-4b38-a00c-376733536a4f"
+            }
+          ]
         }
-      ],
-      "uuid": "3c6463e1-e876-4dc6-85cd-c3e527def69a",
-      "recordTags": []
+      ]
     }
-  ],
-  "exported_tags": [
-    "abuseipdb"
   ]
 }
