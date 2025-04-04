@@ -19,7 +19,7 @@
         "required": true,
         "visible": true,
         "editable": true,
-        "value": "https://cloud.gravityzone.bitdefender.com/api/v1.0/jsonrpc",
+        "value": "https://cloud.gravityzone.bitdefender.com",
         "description": "Specify the server URL to connect and perform automated operations."
       },
       {
