@@ -554,6 +554,7 @@ operations = {
     'get_block_list_items': get_block_list_items,
     'remove_from_blocklist': remove_from_blocklist,
     'create_isolate_endpointtask': create_isolate_endpointtask,
+    'createRestoreEndpointFromIsolationTask': createRestoreEndpointFromIsolationTask,
     'get_custom_rule_list': get_custom_rule_list,
     'delete_custom_rule': delete_custom_rule,
     'update_incident_note': update_incident_note,

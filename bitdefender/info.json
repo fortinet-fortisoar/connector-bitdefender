@@ -1,6 +1,6 @@
 {
   "name": "bitdefender",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "label": "Bitdefender",
   "description": "Bitdefender Endpoint Detection and Response (EDR) is a security solution designed to detect, investigate, and respond to advanced cyber threats on endpoints. This connector enables automated operations such as Get Computers Quarantine List, Get Exchange Quarantine List, and others.",
   "publisher": "Fortinet SE",

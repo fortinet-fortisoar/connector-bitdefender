@@ -16,6 +16,10 @@ class BitDefender(Connector):
     def execute(self, config, operation, params, **kwargs):
         try:
             action = operations.get(operation)
+            if action is None:
+                raise ConnectorError(
+                    "Unsupported operation: {0}".format(operation)
+                )
             logger.info('Executing action {0}'.format(action))
             return action(config, params)
         except Exception as err:
